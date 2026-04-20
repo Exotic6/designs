@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST Price Tags</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #edeef0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .slide {
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 48px rgba(0,0,0,0.09);
+    padding: 52px 64px 48px;
+    max-width: 1040px;
+    width: 100%;
+  }
+
+  /* ── Header ── */
+  .eyebrow {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #e07b39; margin-bottom: 10px;
+    opacity: 0; animation: fadeDown 0.5s ease 0.1s forwards;
+  }
+  h1 {
+    font-size: 28px; font-weight: 800; color: #111318;
+    letter-spacing: -0.02em; margin-bottom: 8px;
+    opacity: 0; animation: fadeDown 0.5s ease 0.25s forwards;
+  }
+  .subtitle {
+    font-size: 14px; color: #626874; line-height: 1.65;
+    max-width: 580px; margin-bottom: 44px; text-wrap: pretty;
+    opacity: 0; animation: fadeDown 0.5s ease 0.4s forwards;
+  }
+  .subtitle strong { color: #1e4fa8; font-weight: 600; }
+
+  /* ── Two-column layout ── */
+  .tags-row {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 40px;
+    align-items: start;
+  }
+
+  .divider-v {
+    background: #e8eaed;
+    align-self: stretch;
+    opacity: 0;
+    animation: fadeIn 0.4s ease 0.8s forwards;
+  }
+
+  /* ── Formula badge ── */
+  .formula-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f4f6;
+    border: 1.5px solid #e2e5ec;
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #111318;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    opacity: 0;
+  }
+
+  .formula-badge .op {
+    font-size: 13px;
+    font-weight: 600;
+    color: #7a808e;
+  }
+
+  /* ── Price tag shape ── */
+  .tag-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+  }
+
+  .tag-section.left  { animation: slideInLeft  0.7s cubic-bezier(0.22,1,0.36,1) 0.65s forwards; }
+  .tag-section.right { animation: slideInRight 0.7s cubic-bezier(0.22,1,0.36,1) 0.65s forwards; }
+
+  .tag-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #9095a1; margin-bottom: 4px;
+  }
+
+  .tag-wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── LEFT TAG: peeling apart ── */
+  .peel-container {
+    width: 100%;
+    position: relative;
+    height: 220px;
+  }
+
+  .peel-tag {
+    position: absolute;
+    left: 0; right: 0;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease;
+  }
+
+  /* The "full" tag shown initially */
+  .peel-full {
+    top: 0; height: 220px;
+    background: #1e4fa8;
+    z-index: 3;
+    box-shadow: 0 8px 32px rgba(30,79,168,0.25);
+  }
+
+  .peel-full .tag-price {
+    font-size: 44px; font-weight: 900; color: #fff; letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .peel-full .tag-sub {
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  /* Hole in the tag (decorative) */
+  .tag-hole {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2.5px solid rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+
+  /* Green base layer */
+  .peel-base {
+    top: 0; height: 120px;
+    background: #16a34a;
+    z-index: 1;
+    box-shadow: 0 8px 24px rgba(22,163,74,0.25);
+  }
+  .peel-base .layer-amount { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+  .peel-base .layer-label  { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Red GST layer */
+  .peel-gst {
+    bottom: 0; height: 92px;
+    background: #dc2626;
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(220,38,38,0.25);
+  }
+  .peel-gst .layer-amount { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+  .peel-gst .layer-label  { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Peeled state */
+  .peeled .peel-full { transform: translateY(-280px); opacity: 0; }
+  .peeled .peel-base { transform: translateY(0); }
+  .peeled .peel-gst  { transform: translateY(0); }
+
+  /* ── RIGHT TAG: expanding ── */
+  .expand-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .expand-tag {
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .expand-main {
+    background: #0f766e;
+    box-shadow: 0 8px 28px rgba(15,118,110,0.25);
+    min-height: 80px;
+  }
+  .expand-main .tag-price-sm { font-size: 38px; font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+  .expand-main .tag-sub-sm   { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
+
+  .expand-step {
+    border-radius: 14px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .step-gst  { background: #fef3c7; border: 1.5px solid #fde68a; }
+  .step-total { background: #dcfce7; border: 1.5px solid #bbf7d0; }
+
+  .step-op   { font-size: 20px; font-weight: 900; color: #9095a1; }
+  .step-text { font-size: 15px; font-weight: 800; color: #111318; letter-spacing: -0.01em; line-height: 1.3; }
+  .step-result { font-size: 22px; font-weight: 900; margin-left: auto; letter-spacing: -0.02em; }
+  .step-gst   .step-result { color: #b45309; }
+  .step-total .step-result { color: #166534; }
+
+  .expanded .expand-step {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .expanded .step-gst   { transition-delay: 0.1s; }
+  .expanded .step-total { transition-delay: 0.35s; }
+
+  /* ── Formula callouts ── */
+  .formula-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .formula-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .chip-left  { background: #1e4fa8; color: #fff; }
+  .chip-right { background: #0f766e; color: #fff; }
+  .chip-icon  { font-size: 16px; opacity: 0.7; }
+
+  /* Replay button */
+  .replay-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 32px auto 0;
+    background: none;
+    border: 1.5px solid #d1d5db;
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #7a808e;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: inherit;
+    opacity: 0;
+    animation: fadeIn 0.4s ease 3.5s forwards;
+  }
+  .replay-btn:hover { border-color: #1e4fa8; color: #1e4fa8; }
+
+  /* ── Keyframes ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-28px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(28px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1.5px solid #ebebeb;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #7a808e;
+    font-size: 12.5px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 3.2s forwards;
+  }
+  .footer-pip { width: 8px; height: 8px; border-radius: 50%; background: #e07b39; margin-top: 5px; flex-shrink: 0; }
+
+  /* ── Tweaks ── */
+  #tweaks-panel {
+    display: none; position: fixed; bottom: 20px; right: 20px;
+    background: #1a1d24; border: 1px solid #2e3340; border-radius: 14px;
+    padding: 18px 20px; width: 210px; font-size: 12px; color: #c8cbd3;
+    z-index: 100; box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+  #tweaks-panel.visible { display: block; }
+  #tweaks-panel h3 { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #656a77; margin-bottom: 14px; font-weight: 700; }
+  .tweak-row { margin-bottom: 13px; }
+  .tweak-row label { display: block; margin-bottom: 5px; font-size: 11px; color: #888; }
+  .swatch-row { display: flex; gap: 6px; }
+  .swatch { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+  .swatch.active { border-color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="slide">
+  <div class="eyebrow">GST Calculations</div>
+  <h1>Extracting & Calculating GST</h1>
+  <p class="subtitle">Two ways to work with GST: <strong>extract it</strong> from a price that already includes it, or <strong>calculate it</strong> on top of a base price. Same result — different starting points.</p>
+
+  <div class="tags-row">
+
+    <!-- LEFT: Peel apart -->
+    <div class="tag-section left" id="leftSection">
+      <div class="tag-label">Price includes GST</div>
+
+      <div class="tag-wrap">
+        <div class="peel-container" id="peelContainer">
+          <!-- Base (green) shown after peel -->
+          <div class="peel-tag peel-base">
+            <div class="layer-label">Base Price</div>
+            <div class="layer-amount">$200</div>
+          </div>
+          <!-- GST (red) shown after peel -->
+          <div class="peel-tag peel-gst">
+            <div class="layer-label">GST</div>
+            <div class="layer-amount">$20</div>
+          </div>
+          <!-- Full tag shown first -->
+          <div class="peel-tag peel-full" id="peelFull">
+            <div class="tag-hole"></div>
+            <div class="tag-price">$220</div>
+            <div class="tag-sub">incl. GST</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-row" id="formulaLeft">
+        <div class="formula-chip chip-left">
+          <span class="chip-icon">÷</span> $220 ÷ 11 = <strong>$20 GST</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-v"></div>
+
+    <!-- RIGHT: Expand outward -->
+    <div class="tag-section right" id="rightSection">
+      <div class="tag-label">Price excludes GST</div>
+
+      <div class="tag-wrap">
+        <div class="expand-container" id="expandContainer">
+          <div class="expand-tag expand-main">
+            <div>
+              <div class="tag-price-sm">$200</div>
+              <div class="tag-sub-sm">excl. GST</div>
+            </div>
+            <!-- Arrow SVG -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="opacity:0.35">
+              <path d="M6 14h16M16 8l6 6-6 6" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="expand-tag expand-step step-gst">
+            <div class="step-op">×</div>
+            <div class="step-text">$200 × 0.1</div>
+            <div class="step-result">= $20 GST</div>
+          </div>
+
+          <div class="expand-tag expand-step step-total">
+            <div class="step-op">+</div>
+            <div class="step-text">$200 + $20</div>
+            <div class="step-result">= $220 total</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-row" id="formulaRight">
+        <div class="formula-chip chip-right">
+          <span class="chip-icon">×</span> $200 × 0.1 = <strong>$20 GST</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;">
+    <button class="replay-btn" id="replayBtn">↺ &nbsp;Replay</button>
+  </div>
+
+  <div class="footer">
+    <div class="footer-pip"></div>
+    <span>Both formulas confirm the same $20 GST. Use <strong>÷ 11</strong> when you have the GST-inclusive price; use <strong>× 0.1</strong> when you know the base price before tax.</span>
+  </div>
+</div>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tweak-row">
+    <label>Background</label>
+    <div class="swatch-row" id="bgSwatches">
+      <div class="swatch active" data-bg="#edeef0" style="background:#edeef0;border-color:#aaa"></div>
+      <div class="swatch" data-bg="#e6ecf5" style="background:#e6ecf5;border-color:#aaa"></div>
+      <div class="swatch" data-bg="#f5f0ea" style="background:#f5f0ea;border-color:#aaa"></div>
+      <div class="swatch" data-bg="#111318" style="background:#111318;border-color:#444"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "bg": "#edeef0"
+  }/*EDITMODE-END*/;
+
+  let state = { ...TWEAK_DEFAULTS };
+
+  // ── Animation sequence ──
+  function runSequence() {
+    const peel      = document.getElementById('peelContainer');
+    const expand    = document.getElementById('expandContainer');
+    const fLeft     = document.getElementById('formulaLeft');
+    const fRight    = document.getElementById('formulaRight');
+
+    // Reset
+    peel.classList.remove('peeled');
+    expand.classList.remove('expanded');
+    fLeft.style.opacity  = '0'; fLeft.style.transform  = 'translateY(10px)';
+    fRight.style.opacity = '0'; fRight.style.transform = 'translateY(10px)';
+
+    // Step 1: peel the left tag (1.5s)
+    setTimeout(() => { peel.classList.add('peeled'); }, 1500);
+
+    // Step 2: show left formula (2.4s)
+    setTimeout(() => {
+      fLeft.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      fLeft.style.opacity    = '1';
+      fLeft.style.transform  = 'translateY(0)';
+    }, 2400);
+
+    // Step 3: expand the right tag (2.0s)
+    setTimeout(() => { expand.classList.add('expanded'); }, 2000);
+
+    // Step 4: show right formula (3.0s)
+    setTimeout(() => {
+      fRight.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      fRight.style.opacity    = '1';
+      fRight.style.transform  = 'translateY(0)';
+    }, 3000);
+  }
+
+  // Auto-run after entrance animations settle
+  setTimeout(runSequence, 900);
+
+  document.getElementById('replayBtn').addEventListener('click', runSequence);
+
+  // ── Tweaks ──
+  function applyState(s) {
+    document.body.style.background = s.bg;
+    document.querySelectorAll('#bgSwatches .swatch').forEach(sw => {
+      sw.classList.toggle('active', sw.dataset.bg === s.bg);
+    });
+  }
+
+  function saveState(partial) {
+    Object.assign(state, partial);
+    applyState(state);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: partial }, '*');
+  }
+
+  document.querySelectorAll('#bgSwatches .swatch').forEach(sw => {
+    sw.addEventListener('click', () => saveState({ bg: sw.dataset.bg }));
+  });
+
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks-panel').classList.add('visible');
+    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('visible');
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  applyState(state);
+</script>
+</body>
+</html>

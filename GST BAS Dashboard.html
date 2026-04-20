@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST BAS Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #edeef0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .slide {
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 48px rgba(0,0,0,0.09);
+    padding: 48px 56px 44px;
+    max-width: 1060px;
+    width: 100%;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeDown 0.6s ease 0.1s forwards;
+  }
+
+  .eyebrow {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #e07b39; margin-bottom: 8px;
+  }
+  h1 { font-size: 26px; font-weight: 800; color: #111318; letter-spacing: -0.02em; line-height: 1.2; }
+
+  .biz-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: #eef3fd;
+    border: 1px solid #d5e3fa;
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 12px; font-weight: 700; color: #1e4fa8;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .biz-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #1e4fa8;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.35); } }
+
+  /* ── Two-column layout ── */
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── LEFT: Transaction cards ── */
+  .transactions { display: flex; flex-direction: column; gap: 14px; }
+
+  .tx-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #9095a1; margin-bottom: 4px;
+  }
+
+  .tx-card {
+    background: #f7f8fa;
+    border: 1px solid #e8eaed;
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 16px;
+    opacity: 0; transform: translateX(-20px);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .tx-card:hover { border-color: #d5e3fa; box-shadow: 0 4px 16px rgba(30,79,168,0.07); }
+  .tx-card.buy-card  { animation: slideInLeft 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .tx-card.sell-card { animation: slideInLeft 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .tx-card:nth-child(2) { animation-delay: 0.65s; }
+  .tx-card:nth-child(3) { animation-delay: 0.85s; }
+  .tx-card:nth-child(4) { animation-delay: 1.05s; }
+
+  .tx-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .tx-icon.buy  { background: #eef3fd; }
+  .tx-icon.sell { background: #edf7f1; }
+
+  .tx-body { flex: 1; }
+  .tx-title { font-size: 14px; font-weight: 700; color: #111318; margin-bottom: 4px; line-height: 1.3; }
+  .tx-detail { font-size: 12px; color: #9095a1; font-family: 'DM Mono', monospace; }
+
+  .tx-right { text-align: right; flex-shrink: 0; }
+  .tx-amount { font-size: 15px; font-weight: 800; color: #111318; font-family: 'DM Mono', monospace; letter-spacing: -0.02em; }
+
+  .tx-gst-pill {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    border-radius: 6px; padding: 2px 8px; margin-top: 5px; letter-spacing: 0.04em;
+  }
+  .tx-gst-pill.paid      { background: #eef3fd; color: #1e4fa8; }
+  .tx-gst-pill.collected { background: #edf7f1; color: #15803d; }
+
+  .tx-type-chip {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 4px; padding: 2px 7px;
+  }
+  .tx-type-chip.buy  { background: #eef3fd; color: #1e4fa8; }
+  .tx-type-chip.sell { background: #edf7f1; color: #15803d; }
+
+  /* ── RIGHT: BAS Panel ── */
+  .bas-panel {
+    background: #f7f8fa;
+    border: 1px solid #e8eaed;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    animation: slideInRight 0.7s cubic-bezier(0.22,1,0.36,1) 1.3s forwards;
+  }
+
+  .bas-header {
+    background: #eef3fd;
+    border-bottom: 1px solid #d5e3fa;
+    padding: 16px 22px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .bas-header-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: #d5e3fa;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .bas-title { font-size: 12px; font-weight: 800; color: #1e4fa8; letter-spacing: 0.06em; text-transform: uppercase; }
+  .bas-period { font-size: 10px; color: #7a97d4; margin-top: 1px; font-weight: 600; letter-spacing: 0.04em; }
+
+  .bas-body { padding: 20px 22px; }
+
+  .bas-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid #f0f0f0;
+    opacity: 0;
+  }
+  .bas-row:last-child { border-bottom: none; }
+  .bas-row.animate { animation: fadeIn 0.4s ease forwards; }
+  .bas-row:nth-of-type(1) { animation-delay: 1.6s; }
+  .bas-row:nth-of-type(2) { animation-delay: 1.85s; }
+  .bas-row:nth-of-type(3) { animation-delay: 2.05s; }
+
+  .bas-row-label { font-size: 12.5px; font-weight: 600; color: #626874; }
+  .bas-row-label strong { color: #111318; font-weight: 700; }
+
+  .bas-row-val { font-size: 15px; font-weight: 800; font-family: 'DM Mono', monospace; letter-spacing: -0.01em; }
+  .val-collected { color: #15803d; }
+  .val-paid      { color: #1e4fa8; }
+
+  .bas-divider { height: 1.5px; background: #e8eaed; margin: 4px 0; }
+
+  /* Result box */
+  .bas-result {
+    background: #edf7f1;
+    border: 1.5px solid #bbf7d0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    opacity: 0;
+    animation: popIn 0.6s cubic-bezier(0.22,1,0.36,1) 2.3s forwards;
+  }
+
+  .result-label { font-size: 12px; font-weight: 800; color: #15803d; letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 3px; }
+  .result-sub   { font-size: 11px; color: #4ade80; font-weight: 500; }
+  .result-amount { font-size: 28px; font-weight: 900; color: #15803d; font-family: 'DM Mono', monospace; letter-spacing: -0.03em; }
+
+  /* Refund arrow */
+  .refund-arrow {
+    padding: 14px 22px 18px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    opacity: 0; animation: fadeIn 0.5s ease 2.8s forwards;
+  }
+
+  .arrow-track { width: 100%; display: flex; align-items: center; gap: 0; }
+
+  .arrow-label-left  { font-size: 10.5px; font-weight: 700; color: #9095a1; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  .arrow-label-right { font-size: 10.5px; font-weight: 700; color: #15803d; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+
+  .arrow-line-refund {
+    flex: 1; height: 2px;
+    background: linear-gradient(90deg, #d1d5db, #16a34a);
+    margin: 0 8px; border-radius: 2px; position: relative;
+  }
+  .arrow-line-refund::before {
+    content: ''; position: absolute; left: -1px; top: 50%;
+    transform: translateY(-50%);
+    border-right: 8px solid #d1d5db;
+    border-top: 5px solid transparent; border-bottom: 5px solid transparent;
+  }
+
+  .refund-note { font-size: 10px; font-weight: 600; color: #9095a1; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 28px; padding-top: 18px;
+    border-top: 1.5px solid #ebebeb;
+    display: flex; align-items: flex-start; gap: 12px;
+    color: #7a808e; font-size: 12px; line-height: 1.6;
+    opacity: 0; animation: fadeUp 0.5s ease 3.1s forwards;
+  }
+  .footer-pip { width: 8px; height: 8px; border-radius: 50%; background: #e07b39; margin-top: 4px; flex-shrink: 0; }
+
+  /* ── Keyframes ── */
+  @keyframes fadeDown   { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp     { from { opacity:0; transform:translateY(14px);  } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
+  @keyframes slideInLeft  { from { opacity:0; transform:translateX(-22px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes slideInRight { from { opacity:0; transform:translateX(22px);  } to { opacity:1; transform:translateX(0); } }
+  @keyframes popIn      { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
+
+  /* ── Tweaks ── */
+  #tweaks-panel {
+    display: none; position: fixed; bottom: 20px; right: 20px;
+    background: #1a1d24; border: 1px solid #2e3340; border-radius: 14px;
+    padding: 18px 20px; width: 210px; font-size: 12px; color: #c8cbd3;
+    z-index: 100; box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+  #tweaks-panel.visible { display: block; }
+  #tweaks-panel h3 { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #656a77; margin-bottom: 14px; font-weight: 700; }
+  .tweak-row { margin-bottom: 13px; }
+  .tweak-row label { display: block; margin-bottom: 5px; font-size: 11px; color: #888; }
+  .swatch-row { display: flex; gap: 6px; }
+  .swatch { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+  .swatch.active { border-color: #fff; }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="header">
+    <div>
+      <div class="eyebrow">BAS Settlement · Q1 2026</div>
+      <h1>ThreadCo — GST Dashboard</h1>
+    </div>
+
+  </div>
+
+  <div class="content">
+
+    <!-- LEFT: Transactions -->
+    <div class="transactions">
+      <div class="tx-label">Transactions this quarter</div>
+
+      <div class="tx-card buy-card" style="animation-delay:0.65s">
+        <div class="tx-icon buy">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M3 6h16l-1.5 10H4.5L3 6z" stroke="#1e4fa8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M8 6V5a3 3 0 016 0v1" stroke="#1e4fa8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="tx-body">
+          <div class="tx-title">Bought fabric</div>
+          <div class="tx-detail">$440 incl. GST &nbsp;·&nbsp; <span class="tx-type-chip buy">Purchase</span></div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount">$440</div>
+          <div class="tx-gst-pill paid">GST Paid $40</div>
+        </div>
+      </div>
+
+      <div class="tx-card sell-card" style="animation-delay:0.85s">
+        <div class="tx-icon sell">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="9" cy="18" r="1.5" fill="#15803d"/>
+            <circle cx="16" cy="18" r="1.5" fill="#15803d"/>
+            <path d="M1 1h3l2 10h10l2-6H6" stroke="#15803d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="tx-body">
+          <div class="tx-title">Sold T-shirts</div>
+          <div class="tx-detail">$330 incl. GST &nbsp;·&nbsp; <span class="tx-type-chip sell">Sale</span></div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount">$330</div>
+          <div class="tx-gst-pill collected">GST Collected $30</div>
+        </div>
+      </div>
+
+      <div class="tx-card buy-card" style="animation-delay:1.05s">
+        <div class="tx-icon buy">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="3" y="8" width="16" height="12" rx="2" stroke="#1e4fa8" stroke-width="1.6" fill="none"/>
+            <path d="M7 8V6a4 4 0 018 0v2" stroke="#1e4fa8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M9 14h4" stroke="#1e4fa8" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="tx-body">
+          <div class="tx-title">Bought packaging</div>
+          <div class="tx-detail">$110 incl. GST &nbsp;·&nbsp; <span class="tx-type-chip buy">Purchase</span></div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount">$110</div>
+          <div class="tx-gst-pill paid">GST Paid $10</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: BAS Panel -->
+    <div class="bas-panel">
+      <div class="bas-header">
+        <div class="bas-header-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="2" width="14" height="14" rx="3" stroke="#1e4fa8" stroke-width="1.6" fill="none"/>
+            <path d="M5 9h8M5 6h5M5 12h3" stroke="#1e4fa8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="bas-title">BAS Settlement</div>
+          <div class="bas-period">Q1 2026 · Due 28 Apr</div>
+        </div>
+      </div>
+
+      <div class="bas-body">
+        <div class="bas-row animate">
+          <div class="bas-row-label"><strong>GST Collected</strong><br><span style="font-size:11px">from sales</span></div>
+          <div class="bas-row-val val-collected">$30</div>
+        </div>
+        <div class="bas-row animate" style="animation-delay:1.85s">
+          <div class="bas-row-label"><strong>GST Paid</strong><br><span style="font-size:11px">on purchases</span></div>
+          <div class="bas-row-val val-paid">− $50</div>
+        </div>
+        <div class="bas-divider" style="margin:8px 0"></div>
+        <div class="bas-row animate" style="animation-delay:2.05s">
+          <div class="bas-row-label" style="color:#9095a1;font-size:11px">Net position</div>
+          <div class="bas-row-val" style="color:#9095a1;font-size:13px">− $20</div>
+        </div>
+
+        <div class="bas-result">
+          <div>
+            <div class="result-label">ATO Refunds</div>
+            <div class="result-sub" style="color:#86efac">Credit to business</div>
+          </div>
+          <div class="result-amount">$20</div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-pip"></div>
+    <span>GST Paid ($50) exceeds GST Collected ($30) this quarter — the ATO owes ThreadCo a $20 refund. This is common for businesses with high input costs relative to sales volume.</span>
+  </div>
+</div>
+
+<!-- Tweaks Panel -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tweak-row">
+    <label>Background</label>
+    <div class="swatch-row" id="bgSwatches">
+      <div class="swatch active" data-bg="#edeef0" style="background:#edeef0;border-color:#aaa"></div>
+      <div class="swatch" data-bg="#e6ecf5" style="background:#e6ecf5;border-color:#aaa"></div>
+      <div class="swatch" data-bg="#f5f0ea" style="background:#f5f0ea;border-color:#aaa"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "bg": "#edeef0"
+  }/*EDITMODE-END*/;
+
+  let state = { ...TWEAK_DEFAULTS };
+
+  function applyState(s) {
+    document.body.style.background = s.bg;
+    document.querySelectorAll('#bgSwatches .swatch').forEach(sw => {
+      sw.classList.toggle('active', sw.dataset.bg === s.bg);
+    });
+  }
+
+  function saveState(partial) {
+    Object.assign(state, partial);
+    applyState(state);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: partial }, '*');
+  }
+
+  document.querySelectorAll('#bgSwatches .swatch').forEach(sw => {
+    sw.addEventListener('click', () => saveState({ bg: sw.dataset.bg }));
+  });
+
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks-panel').classList.add('visible');
+    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('visible');
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  applyState(state);
+</script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+{
+  "frameMs": 300,
+  "slides": [
+    {
+      "name": "receipt_slide_html",
+      "dir": "/home/user/designs/screenshots/receipt_slide_html",
+      "file": "receipt-slide.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 3000,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_010.png"
+        },
+        {
+          "index": 11,
+          "time_ms": 3300,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_011.png"
+        },
+        {
+          "index": 12,
+          "time_ms": 3600,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_012.png"
+        },
+        {
+          "index": 13,
+          "time_ms": 3900,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_013.png"
+        },
+        {
+          "index": 14,
+          "time_ms": 4200,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_014.png"
+        },
+        {
+          "index": 15,
+          "time_ms": 4500,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_015.png"
+        },
+        {
+          "index": 16,
+          "time_ms": 4800,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_016.png"
+        },
+        {
+          "index": 17,
+          "time_ms": 5100,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_017.png"
+        },
+        {
+          "index": 18,
+          "time_ms": 5400,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_018.png"
+        },
+        {
+          "index": 19,
+          "time_ms": 5700,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/frame_019.png"
+        },
+        {
+          "index": 20,
+          "time_ms": 5700,
+          "path": "/home/user/designs/screenshots/receipt_slide_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_Hub_Diagram_html",
+      "dir": "/home/user/designs/screenshots/GST_Hub_Diagram_html",
+      "file": "GST Hub Diagram.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 3000,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_010.png"
+        },
+        {
+          "index": 11,
+          "time_ms": 3300,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_011.png"
+        },
+        {
+          "index": 12,
+          "time_ms": 3600,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_012.png"
+        },
+        {
+          "index": 13,
+          "time_ms": 3900,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_013.png"
+        },
+        {
+          "index": 14,
+          "time_ms": 4200,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/frame_014.png"
+        },
+        {
+          "index": 15,
+          "time_ms": 4100,
+          "path": "/home/user/designs/screenshots/GST_Hub_Diagram_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_Price_Tags_html",
+      "dir": "/home/user/designs/screenshots/GST_Price_Tags_html",
+      "file": "GST Price Tags.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 3000,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_010.png"
+        },
+        {
+          "index": 11,
+          "time_ms": 3300,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_011.png"
+        },
+        {
+          "index": 12,
+          "time_ms": 3600,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_012.png"
+        },
+        {
+          "index": 13,
+          "time_ms": 3900,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_013.png"
+        },
+        {
+          "index": 14,
+          "time_ms": 4200,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/frame_014.png"
+        },
+        {
+          "index": 15,
+          "time_ms": 4100,
+          "path": "/home/user/designs/screenshots/GST_Price_Tags_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_BAS_Dashboard_html",
+      "dir": "/home/user/designs/screenshots/GST_BAS_Dashboard_html",
+      "file": "GST BAS Dashboard.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 3000,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_010.png"
+        },
+        {
+          "index": 11,
+          "time_ms": 3300,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_011.png"
+        },
+        {
+          "index": 12,
+          "time_ms": 3600,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_012.png"
+        },
+        {
+          "index": 13,
+          "time_ms": 3900,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_013.png"
+        },
+        {
+          "index": 14,
+          "time_ms": 4200,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/frame_014.png"
+        },
+        {
+          "index": 15,
+          "time_ms": 4100,
+          "path": "/home/user/designs/screenshots/GST_BAS_Dashboard_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_Ledger_html",
+      "dir": "/home/user/designs/screenshots/GST_Ledger_html",
+      "file": "GST Ledger.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_Ledger_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_P_L_Comparison_html",
+      "dir": "/home/user/designs/screenshots/GST_P_L_Comparison_html",
+      "file": "GST P&L Comparison.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 2500,
+          "path": "/home/user/designs/screenshots/GST_P_L_Comparison_html/final.png",
+          "isFinal": true
+        }
+      ]
+    },
+    {
+      "name": "GST_Summary_html",
+      "dir": "/home/user/designs/screenshots/GST_Summary_html",
+      "file": "GST Summary.html",
+      "frames": [
+        {
+          "index": 0,
+          "time_ms": 0,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_000.png"
+        },
+        {
+          "index": 1,
+          "time_ms": 300,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_001.png"
+        },
+        {
+          "index": 2,
+          "time_ms": 600,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_002.png"
+        },
+        {
+          "index": 3,
+          "time_ms": 900,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_003.png"
+        },
+        {
+          "index": 4,
+          "time_ms": 1200,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_004.png"
+        },
+        {
+          "index": 5,
+          "time_ms": 1500,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_005.png"
+        },
+        {
+          "index": 6,
+          "time_ms": 1800,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_006.png"
+        },
+        {
+          "index": 7,
+          "time_ms": 2100,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_007.png"
+        },
+        {
+          "index": 8,
+          "time_ms": 2400,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_008.png"
+        },
+        {
+          "index": 9,
+          "time_ms": 2700,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_009.png"
+        },
+        {
+          "index": 10,
+          "time_ms": 3000,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_010.png"
+        },
+        {
+          "index": 11,
+          "time_ms": 3300,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_011.png"
+        },
+        {
+          "index": 12,
+          "time_ms": 3600,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_012.png"
+        },
+        {
+          "index": 13,
+          "time_ms": 3900,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/frame_013.png"
+        },
+        {
+          "index": 14,
+          "time_ms": 3800,
+          "path": "/home/user/designs/screenshots/GST_Summary_html/final.png",
+          "isFinal": true
+        }
+      ]
+    }
+  ]
+}

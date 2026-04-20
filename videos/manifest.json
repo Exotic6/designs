@@ -1,0 +1,46 @@
+{
+  "slides": [
+    {
+      "name": "receipt_slide_html",
+      "file": "receipt-slide.html",
+      "webm": "/home/user/designs/videos/raw/receipt_slide_html.webm",
+      "duration_ms": 8500
+    },
+    {
+      "name": "GST_Hub_Diagram_html",
+      "file": "GST Hub Diagram.html",
+      "webm": "/home/user/designs/videos/raw/GST_Hub_Diagram_html.webm",
+      "duration_ms": 7000
+    },
+    {
+      "name": "GST_Price_Tags_html",
+      "file": "GST Price Tags.html",
+      "webm": "/home/user/designs/videos/raw/GST_Price_Tags_html.webm",
+      "duration_ms": 7000
+    },
+    {
+      "name": "GST_BAS_Dashboard_html",
+      "file": "GST BAS Dashboard.html",
+      "webm": "/home/user/designs/videos/raw/GST_BAS_Dashboard_html.webm",
+      "duration_ms": 7000
+    },
+    {
+      "name": "GST_Ledger_html",
+      "file": "GST Ledger.html",
+      "webm": "/home/user/designs/videos/raw/GST_Ledger_html.webm",
+      "duration_ms": 5500
+    },
+    {
+      "name": "GST_P_L_Comparison_html",
+      "file": "GST P&L Comparison.html",
+      "webm": "/home/user/designs/videos/raw/GST_P_L_Comparison_html.webm",
+      "duration_ms": 5500
+    },
+    {
+      "name": "GST_Summary_html",
+      "file": "GST Summary.html",
+      "webm": "/home/user/designs/videos/raw/GST_Summary_html.webm",
+      "duration_ms": 7100
+    }
+  ]
+}
